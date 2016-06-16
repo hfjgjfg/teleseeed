@@ -172,7 +172,7 @@ local function run(msg,matches)
     if matches[1] == "markread" then
     	if matches[2] == "on" then
     		redis:set("bot:markread", "on")
-    		return "Mark read > on"
+    		return "<code>خواندن پیام ها فعال شد</code>"
     	end
     	if matches[2] == "off" then
     		redis:del("bot:markread")
@@ -188,7 +188,7 @@ local function run(msg,matches)
     
     if matches[1] == "pmblock" then
     	if is_admin2(matches[2]) then
-    		return "You can't block admins"
+    		return "<code>شما نمیتوانید ادمین:سودو را بلاک کنید</code>"
     	end
     	block_user("user#id"..matches[2],ok_cb,false)
     	return "User blocked"
@@ -261,8 +261,8 @@ end
 	if matches[1] == 'reload' then
 		receiver = get_receiver(msg)
 		reload_plugins(true)
-		post_msg(receiver, "Reloaded!", ok_cb, false)
-		return "Reloaded!"
+		post_msg(receiver, "UPGRADE DONE", ok_cb, false)
+		return "<code>LOADING.....</code>"
 	end
 	--[[*For Debug*
 	if matches[1] == "vardumpmsg" and is_admin1(msg) then
@@ -306,24 +306,24 @@ end
 
 return {
   patterns = {
-	"^[#!/](pm) (%d+) (.*)$",
-	"^[#!/](import) (.*)$",
-	"^[#!/](pmunblock) (%d+)$",
-	"^[#!/](pmblock) (%d+)$",
-	"^[#!/](markread) (on)$",
-	"^[#!/](markread) (off)$",
-	"^[#!/](setbotphoto)$",
-	"^[#!/](contactlist)$",
-	"^[#!/](dialoglist)$",
-	"^[#!/](delcontact) (%d+)$",
-	"^[#!/](addcontact) (.*) (.*) (.*)$", 
-	"^[#!/](sendcontact) (.*) (.*) (.*)$",
-	"^[#!/](mycontact)$",
-	"^[#/!](reload)$",
-	"^[#/!](updateid)$",
-	"^[#/!](sync_gbans)$",
-	"^[#/!](addlog)$",
-	"^[#/!](remlog)$",
+	"^(pm) (%d+) (.*)$",
+	"^(import) (.*)$",
+	"^(pmunblock) (%d+)$",
+	"^(pmblock) (%d+)$",
+	"^(markread) (on)$",
+	"^(markread) (off)$",
+	"^(setbotphoto)$",
+	"^(contactlist)$",
+	"^(dialoglist)$",
+	"^(delcontact) (%d+)$",
+	"^(addcontact) (.*) (.*) (.*)$", 
+	"^(sendcontact) (.*) (.*) (.*)$",
+	"^(mycontact)$",
+	"^(reload)$",
+	"^(updateid)$",
+	"^(sync_gbans)$",
+	"^(addlog)$",
+	"^](remlog)$",
 	"%[(photo)%]",
   },
   run = run,
